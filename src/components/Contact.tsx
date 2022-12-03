@@ -5,7 +5,7 @@ type Props = {
   phone: string;
 };
 
-const Contact: React.FV<Props> = ({ name, phone }) => {
+const Contact: React.FC<Props> = ({ name, phone }) => {
   return (
     <div
       style={{
