@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {
   name: string;
@@ -6,12 +6,15 @@ type Props = {
 };
 
 const Contact: React.FC<Props> = ({ name, phone }) => {
+  const [isPhoneCensored, setIsPhoneCensored] = useState(false);
+
   return (
     <div
       style={{
         padding: "16px 8px",
         borderBottom: "1px solid rgba(221, 221, 221, 1)",
       }}
+      onClick={() => setIsPhoneCensored(!isPhoneCensored)}
     >
       <p
         style={{
@@ -23,6 +26,7 @@ const Contact: React.FC<Props> = ({ name, phone }) => {
       >
         {name}
       </p>
+      {!isPhoneCensored && (
       <p
         style={{
           fontSize: "16px",
@@ -31,6 +35,17 @@ const Contact: React.FC<Props> = ({ name, phone }) => {
       >
         {phone}
       </p>
+      )}
+      {isPhoneCensored && (
+      <p
+        style={{
+          fontSize: "16px",
+          color: "rgba(135, 152, 186, 1)",
+        }}
+      >
+        ************
+      </p>
+      )}
     </div>
   );
 };
